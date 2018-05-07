@@ -1,0 +1,24 @@
+#include "getsectordata.h"
+#include "../fmtprint/fmtprint.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char *argv[]){
+	if(argc != 4) {
+		printf("Usage: %s device start num\n", argv[0]);
+		return 1;
+	}
+
+	int start = atoi(argv[2]);
+	int num = atoi(argv[3]);
+	char buffer[512 * 10];
+	int fd = open(argv[1], O_RDONLY);
+	//getDiskSector(fd, buffer, start, num);
+
+	//read(fd, buffer, 5120);
+	getSectorData(fd, buffer, start);
+	print(buffer, 512 * num);
+	return 0;
+}
