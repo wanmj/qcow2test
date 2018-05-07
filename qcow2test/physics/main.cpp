@@ -3,6 +3,7 @@
 #include "attach/attach.h"
 #include "connection/connection.h"
 #include "localread/read.h"
+#include <time.h>
 #include <stdlib.h>
 #include <string.h>
 #include <iostream>
@@ -13,21 +14,24 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
-	if(argc != 4) {
-		printf("Usage: %s domain-id xml-path vdisk-path.\n", argv[0]);
+	if(argc != 5) {
+		printf("Usage: %s domain-id xml-path vdisk-path ip-addr.\n", argv[0]);
 		return 1;
 	}
 	if(virAttachVolume(atoi(argv[1]), argv[2], argv[3], "vdddd") != 0) {
 		return 1;
 	}
 
+	srand((int)time(NULL));
+
 	// 挂载时间未考虑，导致开始几次循环读取不到磁盘
 	sleep(1);
+
 	for(int i = 0; i < 1000; ++i) {
 		Connection *pc = NULL;
 		LocalRead *pl = NULL;
 		try {
-			pc = new Connection("192.168.237.133", 10240);
+			pc = new Connection(argv[4], 10240);
 			pl = new LocalRead();
 		}
 		catch(const char *e) {

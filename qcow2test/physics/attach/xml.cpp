@@ -9,7 +9,7 @@
 char *virDeviceXMLGet(const char *xmlpath) {
 	FILE *fp = NULL;
 	if((fp = fopen(xmlpath, "r")) == NULL) {
-		fprintf(stderr, "failed to open(r) file %s.\n", xmlpath);
+//		fprintf(stderr, "failed to open(r) file %s.\n", xmlpath);
 		return NULL;
 	}
 	

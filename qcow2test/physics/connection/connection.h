@@ -24,6 +24,7 @@ private:
 public:
 	// TODO
 	// 怎么做看源文件
+	// DONE
 	//
 	const char *getRemoteData(int startSector, int numSector);
 	

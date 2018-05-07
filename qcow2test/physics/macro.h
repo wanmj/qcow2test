@@ -6,7 +6,7 @@
 #endif
 
 #ifndef SECTOR_NUM
-#define SECTOR_NUM 1000
+#define SECTOR_NUM 100000
 #endif
 
 #ifndef SECTOR_SIZE
